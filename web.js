@@ -4,13 +4,39 @@ var sys = require("sys")
   , io = require('socket.io')
   , Canvas = require('canvas')
   , Image = Canvas.Image
-  , exec = require("child_process").exec;
+  , exec = require("child_process").exec
+  , form = require('connect-form');
 
 var app = express.createServer(express.logger());
 var server = io.listen(app);
 
 app.get('/', function(request, response) {
-  response.sendfile(__dirname + '/index.html');
+    response.sendfile(__dirname + '/index.html');
+});
+
+app.get('/upload', function(request, response) {
+    response.send('<form method="post" enctype="multipart/form-data">'
+        + '<p>Image: <input type="file" name="image" /></p>'
+        + '<p><input type="submit" value="Upload" /></p>'
+        + '</form>');
+});
+
+app.post('/upload', function(request, response, next) {
+    request.form.complete(function(err, fields, files) {
+        if (err) {
+            next(err);
+        } else {
+            console.log('\nuploaded %s to %s'
+            ,  files.image.filename
+            , files.image.path);
+            res.redirect('back');
+        }
+    });
+
+    request.form.on('progress', function(bytesReceived, bytesExpected) {
+        var percent = (bytesReceived / bytesExpected * 100) | 0;
+        process.stdout.write('Uploading: %' + percent + '\r');
+    });
 });
 
 var port = process.env.PORT || 3000;

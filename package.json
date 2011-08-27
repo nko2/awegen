@@ -15,7 +15,8 @@
     "nko": "~0.1.1",
     "express": "~2.4.6",
     "socket.io": "~0.7.9",
-    "canvas": "~0.7.1"
+    "canvas": "~0.7.1",
+    "connect-form": "~0.2.1"
   },
   "devDependencies": {}
 }
