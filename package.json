@@ -1,0 +1,18 @@
+{
+  "author": "Alan Fachini <alfakini@gmail.com>, Felipe Gallois <felipe@gallois.com.br> and Julio Monteiro <julio@monteiro.eti.br> (http://julio.monteiro.eti.br)",
+  "name": "graphikus",
+  "description": "http://graphik.us",
+  "version": "0.0.1",
+  "homepage": "http://graphik.us",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nko2/awegen.git"
+  },
+  "engines": {
+    "node": "~v0.4.11"
+  },
+  "dependencies": {
+    "nko": "~0.1.0"
+  },
+  "devDependencies": {}
+}
