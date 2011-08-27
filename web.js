@@ -7,7 +7,7 @@ var sys = require("sys")
   , exec = require("child_process").exec
   , form = require('connect-form');
 
-var app = express.createServer(express.logger());
+var app = express.createServer(form({ keepExtensions: true }));
 var server = io.listen(app);
 
 app.get('/', function(request, response) {
@@ -15,10 +15,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/upload', function(request, response) {
-    response.send('<form method="post" enctype="multipart/form-data">'
-        + '<p>Image: <input type="file" name="image" /></p>'
-        + '<p><input type="submit" value="Upload" /></p>'
-        + '</form>');
+    response.sendfile(__dirname + '/upload.html');
 });
 
 app.post('/upload', function(request, response, next) {
@@ -26,10 +23,8 @@ app.post('/upload', function(request, response, next) {
         if (err) {
             next(err);
         } else {
-            console.log('\nuploaded %s to %s'
-            ,  files.image.filename
-            , files.image.path);
-            res.redirect('back');
+            console.log('\nuploaded %s to %s', files.image.filename, files.image.path);
+            response.redirect('back');
         }
     });
 
