@@ -22,7 +22,7 @@
             socket.on('image-list', function(json) {
                 var images = JSON.parse(json);
                 $.each(images, function (i, imageName) {
-                    $('ul').append('<li>' + imageName + '</li>');
+                    $('#imagelist').append('<li>' + imageName + '</li>');
                 });
             });
 
@@ -38,29 +38,51 @@
         </script>
     </head>
     <body>
-        <div class="row">
-            <div class="container">
-                <div class="row show-grid">
-                    <div class="span6 columns">
-                        <div class="clearfix">
-                            <h4>Images on server:</h4>
-                            <ul id="imagelist"></ul>
-                        </div>
-                        <div class="clearfix">
-                            <label for="textarea">Sourcecode</label>
-                            <div class="input">
-                                <textarea id="sourcecode" class="xxlarge" name="textarea", rows=10>marvin.png</textarea>
-                                <span class="help-block"> Write the name of image and click 'Submit Code!' to load it! </span>
-                                <br />
-                                <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="span6 columns">
-                        <div id="imagewrapper"></div>
+        <div class="topbar">
+            <div class="fill">
+                <div class="container">
+                    <h3><a href="#">graphik.us</a></h3>
+                    <ul>
+                        <li class="active"><a href="#image">Image</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="masthead">
+            <div class="inner">
+                <div class="container">
+                    <h1>Bootstrap, from Twitter</h1>
+                    <p class="lead">
+                    Vamos editar algumas imagens legais <br />
+                    Muito legal <br />
+                    </p>
+                    <div class="clearfix">
+                        <h4>Images on server:</h4>
+                        <ul id="imagelist"></ul>
                     </div>
                 </div>
             </div>
         </div>
+
+        <section id="image-editor" style="margin-left: 50px">
+            <div class="row">
+                <div class="span6 columns">
+                    <div class="clearfix">
+                        <label for="textarea">Sourcecode</label>
+                        <div class="input">
+                            <textarea id="sourcecode" class="xxlarge"
+                                name="textarea", rows=20>marvin.png</textarea>
+                            <span class="help-block">Write your code here!</span>
+                            <br />
+                            <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="span5 columns">
+                    <div id="imagewrapper"></div>
+                </div>
+            </div>
+        </section>
     </body>
 </html>
