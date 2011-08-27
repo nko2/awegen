@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+
+            $(document).ready(function() {
+                $('#imageupload').change(function() {
+                    alert(true);
+                    $.post('/upload', function(data) {
+                        alert("Data Loaded: " + data);
+                    });
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <div class="topbar">
+            <div class="fill">
+                <div class="container">
+                    <h3><a href="#">graphik.us</a></h3>
+                    <ul>
+                        <li class="active"><a href="#image">Image</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li> <input id="imageupload" type="file" name="imageupload"/></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            <p>Image: <input type="file" name="image" /></p>
+            <p><input type="submit" value="Upload" /></p>
+        </form>
+    </body>
+</html>
+
+
+

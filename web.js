@@ -15,15 +15,15 @@ app.use("/css", express.static(__dirname + '/public/css'));
 app.use("/js", express.static(__dirname + '/public/js'));
 
 app.get('/', function(request, response) {
-    response.sendfile(__dirname + '/index.html');
     response.sendfile(__dirname + '/public/index.html');
 });
 
 app.get('/upload', function(request, response) {
-    response.sendfile(__dirname + '/upload.html');
+    response.sendfile(__dirname + '/public/upload.html');
 });
 
 app.post('/upload', function(request, response, next) {
+    console.log(request);
     request.form.complete(function(err, fields, files) {
         if (err) {
             next(err);
