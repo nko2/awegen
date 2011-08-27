@@ -1,0 +1,81 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>graphik.us: image processing power right away</title>
+  <meta name="description" content="">
+  <meta name="author" content="Alan Fachini <alfakini@gmail.com>, Felipe Gallois <felipe@gallois.com.br>, Julio Monteiro <julio@monteiro.eti.br>">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.1.1.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="fill">
+      <div class="container">
+        <h3><a href="#">graphik.us</a></h3>
+        <ul>
+          <li class="active"><a href="#image">Image</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="app" class="container-fluid">
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <select id="imgs" name="imagelist"></select>
+        </div>
+        <div class="row">
+          <div class="span10 columns">
+          </div>
+          <div class="span6 columns">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="image-editor" style="margin-left: 50px">
+    <div class="row">
+      <div class="span6 columns">
+        <div class="clearfix">
+          <label for="textarea">Sourcecode</label>
+          <div class="input">
+            <textarea id="sourcecode" class="xxlarge" name="textarea", rows=20></textarea>
+            <span class="help-block">Write your code here!</span>
+            <br />
+            <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
+          </div>
+        </div>
+      </div>
+      <div class="span5 columns">
+        <div id="imagewrapper"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+  <script src="js/libs/underscore-1.1.7.min.js"></script>
+  <script src="js/libs/json2-2011.02.23.js"></script>
+  <script src="js/libs/backbone-0.5.3.min.js"></script>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/script.js"></script>
+
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+    <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+  <![endif]-->
+</body>
+</html>

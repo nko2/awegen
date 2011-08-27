@@ -1,0 +1,14 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+  graphik.us: Alan Fachini <alfakini@gmail.com>, Felipe Gallois <felipe@gallois.com.br>, Julio Monteiro <julio@monteiro.eti.br>
+  Site: http://graphik.us
+  Location: Joinville, Brazil
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: Modernizr, jQuery, Backbone.js
+  Software: node.js
+  
