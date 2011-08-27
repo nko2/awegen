@@ -27,11 +27,6 @@ app.post('/upload', function(request, response, next) {
             response.redirect('back');
         }
     });
-
-    request.form.on('progress', function(bytesReceived, bytesExpected) {
-        var percent = (bytesReceived / bytesExpected * 100) | 0;
-        process.stdout.write('Uploading: %' + percent + '\r');
-    });
 });
 
 var port = process.env.PORT || 3000;
