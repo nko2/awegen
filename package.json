@@ -12,8 +12,10 @@
     "node": "~v0.4.11"
   },
   "dependencies": {
-    "nko": "~0.1.0",
-    "express": "~2.4.6"
+    "nko": "~0.1.1",
+    "express": "~2.4.6",
+    "socket.io": "~0.7.9",
+    "canvas": "~0.7.1"
   },
   "devDependencies": {}
 }

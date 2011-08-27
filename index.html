@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <!--<script src="less.js" type="text/javascript"></script>
+        <link rel="stylesheet/less" type="text/css"
+        href="public/bootstrap/lib/bootstrap.less">-->
+        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.1.0.min.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io.connect('http://localhost');
+            socket.emit('client-connect', 'ok');
+
+            // When image arrive, display it
+            socket.on('image', function(json) {
+                $('#imagewrapper').empty();
+                $('#imagewrapper').append(json);
+                //var json = JSON.parse(data);
+                console.log(json);
+            });
+
+            socket.on('image-list', function(json) {
+                var images = JSON.parse(json);
+                $.each(images, function (i, imageName) {
+                    $('ul').append('<li>' + imageName + '</li>');
+                });
+            });
+
+            $(document).ready(function() {
+                // When submit code button pressed
+                $('#submitcode').click(function() {
+                    var sourcecode = $('#sourcecode').val();
+                    var json = JSON.stringify({'sourcecode' : sourcecode});
+                    // Emit an event to server with source code
+                    socket.emit('sourcecode', json);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="row">
+            <div class="container">
+                <div class="row show-grid" title="Example uncommon two-column layout">
+                    <div class="span6 columns">
+                        <div class="clearfix">
+                            <h4>Images on server:</h4>
+                            <ul id="imagelist"></ul>
+                        </div>
+                        <div class="clearfix">
+                            <label for="textarea">Sourcecode</label>
+                            <div class="input">
+                                <textarea id="sourcecode" class="xxlarge" name="textarea">marvin.png</textarea>
+                                <span class="help-block"> Write the name of image and click 'Submit Code!' to load it! </span>
+                                <br />
+                                <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6 columns">
+                        <div id="imagewrapper"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
