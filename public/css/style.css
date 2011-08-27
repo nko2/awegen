@@ -1,0 +1,27 @@
+.app-fluid {
+  padding: 45px 20px 0;
+  zoom: 1;
+  margin-bottom: 18px;
+}
+.app-fluid:before, .app-fluid:after {
+  display: table;
+  content: "";
+}
+.app-fluid:after {
+  clear: both;
+}
+.app-fluid .sidebar {
+  float: left;
+  width: 220px;
+}
+.app-fluid .content {
+  min-width: 700px;
+  max-width: 1180px;
+  margin-left: 240px;
+}
+
+#sourcecode {
+  position: absolute;
+  width: 500px;
+  height: 400px;
+}

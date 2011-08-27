@@ -28,48 +28,36 @@
       </div>
     </div>
   </div>
-  <div id="app" class="container-fluid">
+  <div id="app" class="app-fluid">
+    <div class="sidebar">
+      <div id="imagewrapper"></div>
+    </div>
     <div class="content">
       <div class="container">
         <div class="row">
-          <select id="imgs" name="imagelist"></select>
+          <div class="span16">
+            <select id="imgs" name="imagelist"></select>
+          </div>
         </div>
         <div class="row">
-          <div class="span10 columns">
-          </div>
-          <div class="span6 columns">
+          <div class="span16 columns">
+            <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
+            <div id="sourcecode">some text</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <section id="image-editor" style="margin-left: 50px">
-    <div class="row">
-      <div class="span6 columns">
-        <div class="clearfix">
-          <label for="textarea">Sourcecode</label>
-          <div class="input">
-            <textarea id="sourcecode" class="xxlarge" name="textarea", rows=20></textarea>
-            <span class="help-block">Write your code here!</span>
-            <br />
-            <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
-          </div>
-        </div>
-      </div>
-      <div class="span5 columns">
-        <div id="imagewrapper"></div>
-      </div>
-    </div>
-  </section>
-
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
   <script src="js/libs/underscore-1.1.7.min.js"></script>
   <script src="js/libs/json2-2011.02.23.js"></script>
   <script src="js/libs/backbone-0.5.3.min.js"></script>
-
   <script src="/socket.io/socket.io.js"></script>
+  <script src="js/libs/ace/ace.js"></script>
+  <script src="js/libs/ace/theme-textmate.js"></script>
+  <script src="js/libs/ace/mode-javascript.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
 
