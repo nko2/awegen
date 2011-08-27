@@ -10,8 +10,13 @@ var sys = require("sys")
 var app = express.createServer(form({ keepExtensions: true }));
 var server = io.listen(app);
 
+// Serve static files
+app.use("/css", express.static(__dirname + '/public/css'));
+app.use("/js", express.static(__dirname + '/public/js'));
+
 app.get('/', function(request, response) {
     response.sendfile(__dirname + '/index.html');
+    response.sendfile(__dirname + '/public/index.html');
 });
 
 app.get('/upload', function(request, response) {
