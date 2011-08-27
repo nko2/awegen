@@ -7,7 +7,7 @@ var sys = require("sys")
   , exec = require("child_process").exec
   , form = require('connect-form');
 
-var app = express.createServer(form({ keepExtensions: true }));
+var app = express.createServer(form({ keepExtensions: true, uploadDir: __dirname + '/images' }));
 var server = io.listen(app);
 
 // Serve static files
