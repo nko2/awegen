@@ -22,14 +22,17 @@
             socket.on('image-list', function(json) {
                 var images = JSON.parse(json);
                 $.each(images, function (i, imageName) {
-                    $('#imagelist').append('<li>' + imageName + '</li>');
+                    $('select#imgs').append('<option value=' + imageName + '>' + imageName + '</option>');
                 });
             });
 
             $(document).ready(function() {
                 // When submit code button pressed
                 $('#submitcode').click(function() {
-                    var sourcecode = $('#sourcecode').val().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
+                    var sourcecode = $('select#imgs').val() + " -";
+                    sourcecode += $('#sourcecode').val().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
+                    console.log(sourcecode)
+                    sourcecode = sourcecode.replace(/-$/, "");
                     var json = JSON.stringify({'sourcecode' : sourcecode});
                     // Emit an event to server with source code
                     socket.emit('sourcecode', json);
@@ -59,7 +62,9 @@
                     </p>
                     <div class="clearfix">
                         <h4>Images on server:</h4>
-                        <ul id="imagelist"></ul>
+                        <select id="imgs" name="imagelist">
+                        </select>
+                        <!--<ul id="imagelist"></ul>-->
                     </div>
                 </div>
             </div>
