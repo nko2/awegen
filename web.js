@@ -36,7 +36,6 @@ server.sockets.on('connection', function (socket) {
   socket.on('sourcecode', function(data) {
     console.log('Receiving sourcecode: \n' + data);
 
-    // tratar imagem
     var json_message = JSON.parse(data).sourcecode;
     var imageName = json_message.split(' ')[0]
     var json_message = "images/" + json_message

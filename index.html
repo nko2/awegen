@@ -29,7 +29,7 @@
             $(document).ready(function() {
                 // When submit code button pressed
                 $('#submitcode').click(function() {
-                    var sourcecode = $('#sourcecode').val();
+                    var sourcecode = $('#sourcecode').val().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
                     var json = JSON.stringify({'sourcecode' : sourcecode});
                     // Emit an event to server with source code
                     socket.emit('sourcecode', json);
@@ -40,7 +40,7 @@
     <body>
         <div class="row">
             <div class="container">
-                <div class="row show-grid" title="Example uncommon two-column layout">
+                <div class="row show-grid">
                     <div class="span6 columns">
                         <div class="clearfix">
                             <h4>Images on server:</h4>
@@ -49,7 +49,7 @@
                         <div class="clearfix">
                             <label for="textarea">Sourcecode</label>
                             <div class="input">
-                                <textarea id="sourcecode" class="xxlarge" name="textarea">marvin.png</textarea>
+                                <textarea id="sourcecode" class="xxlarge" name="textarea", rows=10>marvin.png</textarea>
                                 <span class="help-block"> Write the name of image and click 'Submit Code!' to load it! </span>
                                 <br />
                                 <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
