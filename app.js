@@ -56,13 +56,14 @@ server.sockets.on('connection', function (socket) {
   socket.on('sourcecode', function(data) {
     console.log('Receiving data: \n' + data);
     var json = JSON.parse(data);
-    var json_message = 'images/' + json.image + ' -' + json.sourcecode.replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -').replace(/-$/, "");
+    var json_message = __dirname + '/images/' + json.image + ' -' + json.sourcecode.replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -').replace(/-$/, "");
 
     var imageName = json.image;
-    var imageOutput = "images_output/" + new Date().getTime() + imageName;
+    var imageOutput = __dirname + "/images_output/" + new Date().getTime() + imageName;
     var convert_params = json_message + " " + imageOutput;
 
-    console.log(convert_params);
+  	console.log("Convert_params:: " + convert_params);
+    console.log("Command: " + convert_params);
     child = exec("convert " + convert_params, function (error, stdout, stderr) {
       console.log("stdout: " + stdout);
       console.log("stderr: " + stderr);
