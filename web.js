@@ -12,16 +12,14 @@ var error = new Error();
 var app = express.createServer(form({ keepExtensions: true, uploadDir: __dirname + '/images' }));
 var server = io.listen(app);
 
+require('nko')('o5nIpNA2L1YuKWrV');
+
 // Serve static files
 app.use("/css", express.static(__dirname + '/public/css'));
 app.use("/js", express.static(__dirname + '/public/js'));
 
 app.get('/', function(request, response) {
     response.sendfile(__dirname + '/public/index.html');
-});
-
-app.get('/upload', function(request, response) {
-    response.sendfile(__dirname + '/public/upload.html');
 });
 
 app.post('/upload', function(request, response, next) {
@@ -77,12 +75,16 @@ server.sockets.on('connection', function (socket) {
     child = exec("convert " + convert_params, function (error, stdout, stderr) {
       console.log("stdout: " + stdout);
       console.log("stderr: " + stderr);
+      console.log("error: " + error)
 
-      var marvin = fs.readFileSync(__dirname + '/' + imageOutput);
+      var marvin;
 
       if (error !== null) {
         marvin = fs.readFileSync(__dirname + '/images/' + imageName);
+        socket.emit('error')
         console.log("stdout: " + stdout);
+      } else {
+        marvin = fs.readFileSync(__dirname + '/' + imageOutput);
       }
 
       var image = new Image;
