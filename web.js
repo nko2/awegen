@@ -26,7 +26,6 @@ app.post('/upload', function(request, response, next) {
     request.form.complete(function(err, fields, files) {
         if (err) {
             next(err);
-            //response.redirect('back');
         } else {
             console.log('\nuploaded %s to %s', files.image.filename, files.image.path);
             response.redirect('back');

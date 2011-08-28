@@ -1,4 +1,9 @@
+*/.localized
+*/.DS_Store
+.localized
+.DS_Store
 node_modules
 *.swp
 *~
 images/output/*
+images_output/*
