@@ -58,7 +58,7 @@ server.sockets.on('connection', function (socket) {
     var json = JSON.parse(data);
 
     var imageName = json.image;
-    var imageOriginal = __dirname + '/images/' + json.image;
+    var imageInput = __dirname + '/images/' + json.image;
     var imageOutput = __dirname + "/images_output/" + new Date().getTime() + imageName;
     var convert_params = imageInput + ' -' + json.sourcecode.replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -').replace(/-$/, "") + " " + imageOutput;
 
