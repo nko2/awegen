@@ -20,6 +20,10 @@ app.get('/', function(request, response) {
     response.sendfile(__dirname + '/public/index.html');
 });
 
+app.get('/about', function(request, response) {
+    response.sendfile(__dirname + '/public/about.html');
+});
+
 app.post('/upload', function(request, response, next) {
     request.form.complete(function(err, fields, files) {
         if (err) {

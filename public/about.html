@@ -60,54 +60,62 @@
         </div><!-- /fill -->
     </div><!-- /topbar -->
 </div><!-- /topbar-wrapper -->
-<div class="container-fluid" style="">
+<div class="container" style="">
     <!--Y space of nav-nopbar-->
     <div class="row" style="margin-top:20px"></div>
     <div class="row" style="margin-top:20px"></div>
 
-    <!--Code and Image top menus-->
-    <div class="row" style="margin:0 0 5px 6px;">
-        <div class="columns" style="float:left; width:30%;">
+    <section id="about">
+        <div class="page-header">
+            <h1>About Graphik.us</h1>
         </div>
-        <div class="columns" style="float:right; width:65%;">
-            <div class="row" style="margin:0 0 5px 6px;">
-                <div class="span4 columns" style="margin:0; padding:0;">
-                    <select id="imgs" name="imagelist"></select>
-                </div>
-                <div class="span4 columns" style="margin:0; padding:0;">
-                    <form id="imageupload" method="post" action="/upload" enctype="multipart/form-data" style="margin:0; padding:0;">
-                        <input id="imageinput" type="file" name="image"/>
-                    </form>
-                </div>
+        <div class="row">
+            <div class="span6 columns">
+                <h3>Graphik.us</h3>
+                <p>Graphik.us is a digital image processing tool where
+                you can edit source code that is evaluated into a processed
+                image.</p>
+                <p>This is a prototype app built with node.js
+                that lets you to edit source code in the browser and then
+                process images in the server.</p>
+                <p>For this initial prototype, we're using imagemagick as the
+                image processor, so all commands in
+                graphik.us are related with convert tool.</p>
+                            </div>
+            <div class="span5 columns">
+                <h3>Colophon</h3>
+                <p>We wouldn't be able to build this experiment without help of
+                great tools. Our many thanks to:</p>
+                <ul>
+                    <li><a href="http://nodejs.org/">node.js</a>
+                        <ul>
+                            <li><a href="http://socket.io/">socket.io</a></li>
+                            <li><a href="http://expressjs.com/">express</a></li>
+                            <li><a href="https://github.com/LearnBoost/node-canvas">node-canvas</a></li>
+                            <li><a href="https://github.com/felixge/node-formidable">formidable</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="http://http://www.imagemagick.org/">Imagemagick</li>
+                    <li><a href="http://jquery.com/">jQuery</a></li>
+                    <li><a href="http://ace.ajax.org/">Ace Editor</a></li>
+                    <li><a href="http://twitter.github.com/bootstrap/">Twitter’s bootstrap HTML</a></li>
+                </ul>
             </div>
-        </div>
-    </div>
-
-    <!--Code and Image-->
-    <div class="row" style="margin:0 0 10px 6px; height:490px;">
-        <div class="columns" style="float:left; width:30%; height:100%;
-            border:#E8E8E8 1px solid;">
-            <div id="sourcecode">flip
-gamma 20
-negate
-fuzz 10</div>
-        </div>
-        <div class="columns" style="float:right; width:65%; height:100%; background-color:#EEEEEE; border:#CBC8C2 solid 1px;">
-              <div id="imagewrapper"></div>
-        </div>
-    </div>
-
-    <!--Code and Image bottom menus-->
-    <div class="row" style="margin: 0 0 0 6px;">
-        <div class="columns" style="float:left; width:30%; height:100%;">
-            <div class="well" style="padding: 14px 19px;">
-                <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
-                <span style="margin-right:20px">auto <input id="autosubmitcode" type="checkbox"></span>
-                <span> <a href="http://www.imagemagick.org/script/convert.php"> commands? </a></span>
-                <!--<button class="btn">Save</button>-->
+            <div class="span5 columns">
+                <h3>Graphik.us team</h3>
+                <p>Graphik.us is powered by
+                <a href="http://twitter.com/#!/gallois">@gallois</a>,
+                <a href="http://twitter.com/#!/jmonteiro">@jmonteiro</a>,
+                <a href="http://twitter.com/#!/alfakini">@alfakini</a>
+                <p>We're hackers wannabe from Joinville and Florianopolis,
+                Brazil.</p>
+                <p>Visit our nko2 <a href="http://nodeknockout.com/teams/awegen">project page</a>.</p>
+                <p>
+                    <iframe src="http://nodeknockout.com/iframe/awegen?css=https://raw.github.com/gist/1176404/e336c0efd7c6d78fa1f49fda2f5e813ab747f580/ko-button.css" width="100px" height="25px" style="border: 0; margin-top: 20px"></iframe>
+                </p>
             </div>
-        </div>
-    </div>
+        </div><!-- /row -->
+    </section>
 </div>
 </body>
 </html>
