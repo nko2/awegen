@@ -42,7 +42,6 @@ $(function(){
             sourcecode += editor.getSession().getValue().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
             sourcecode = sourcecode.replace(/-$/, "");
             var json = JSON.stringify({'sourcecode' : sourcecode});
-            alert(json);
             // Emit an event to server with source code
             socket.emit('sourcecode', json);
         });

@@ -60,14 +60,14 @@ server.sockets.on('connection', function (socket) {
     var json_message = JSON.parse(data).sourcecode;
     var imageName = json_message.split(' ')[0]
     var json_message = "images/" + json_message
-    var imageOutput = "output/" + new Date().getTime() + imageName
-    var convert_params = json_message + " images/" + imageOutput
+    var imageOutput = "images_output/" + new Date().getTime() + imageName
+    var convert_params = json_message + " " + imageOutput
 
     child = exec("convert " + convert_params, function (error, stdout, stderr) {
       console.log("stdout: " + stdout);
       console.log("stderr: " + stderr);
 
-      var marvin = fs.readFileSync(__dirname + '/images/' + imageOutput);
+      var marvin = fs.readFileSync(__dirname + '/' + imageOutput);
 
       if (error !== null) {
         marvin = fs.readFileSync(__dirname + '/images/' + imageName);
