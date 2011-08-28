@@ -7,7 +7,7 @@ $(function(){
     editor.getSession().setMode(new JavaScriptMode());
 
     /* Socket.io */
-    var socket = io.connect('http://localhost/');
+    var socket = io.connect();
     socket.emit('client-connect', 'ok');
 
     // When image arrive, display it
