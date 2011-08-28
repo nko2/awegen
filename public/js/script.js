@@ -51,6 +51,14 @@ $(function(){
 
         submitData();
 
+        $('#close-initial-message').click(function() {
+            $('#initial-message').slideUp();
+        });
+
+        $('#understand-button').click(function() {
+            $('#initial-message').slideUp();
+        });
+
         // When submit code button pressed
         $('#submitcode').click(function() {
             submitData();

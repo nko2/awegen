@@ -48,19 +48,32 @@
     </div>
 </div>
 <div class="app-fluid" style="">
+    <div id="initial-message" class="row" style="margin:10px 0 0 0;">
+        <div class="alert-message block-message info">
+            <a id="close-initial-message" class="close" href="#">&times;</a>
+            <p>Hey you! This is graphik.us, and app build in 48h to, read the
+            about page, out nko2 team page http://nodeknockout.com/teams/awegen.
+            How to use, selecti mage, code, submit
+            </p>
+            <div class="alert-actions">
+                <a id="understand-button" class="btn small" href="#">I understand!</a>
+            </div>
+        </div>
+    </div>
     <!--Code and Image top menus-->
     <div class="row" style="margin:0 0 10px 0;">
         <div class="columns leftbar" style="float:left; width:30%; height:100%;">
         </div>
         <div class="columns rightbar" style="float:right; width:65%; height:100%; background-color:#FFFFFF;">
-                <div class="span4 columns" style="margin:0; padding:0;">
-                    <select id="imgs" name="imagelist">
-                        <option value="marvin.png">marvin.png</option></select>
+                <div class="span5 columns" style="margin:0; padding:0;">
+                    <span>Image: <select id="imgs" name="imagelist">
+                        <option value="marvin.png">marvin.png</option>
+                    </select></span>
                 </div>
-                <div class="span4 columns" style="margin:0; padding:0;">
-                    <form id="imageupload" method="post" action="/upload" enctype="multipart/form-data" style="margin:0; padding:0;">
+                <div class="span6 columns" style="margin:0; padding:0;">
+                <form id="imageupload" method="post" action="/upload" enctype="multipart/form-data" style="margin:0; padding:0;">
                         <input id="imageinput" type="file" name="image"/>
-                    </form>
+                </form>
                 </div>
         </div>
     </div>
