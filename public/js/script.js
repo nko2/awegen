@@ -3,11 +3,9 @@ $(function(){
     /* Ace editor */
     var editor = ace.edit("sourcecode");
     editor.setTheme("ace/theme/textmate");
-    var JavaScriptMode = require("ace/mode/javascript").Mode;
-    editor.getSession().setMode(new JavaScriptMode());
 
     /* Socket.io */
-    var socket = io.connect('http://localhost/');
+    var socket = io.connect();
     socket.emit('client-connect', 'ok');
 
     // When image arrive, display it

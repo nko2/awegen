@@ -5,5 +5,4 @@
 node_modules
 *.swp
 *~
-images/output/*
 images_output/*
