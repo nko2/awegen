@@ -10,14 +10,13 @@
 .app-fluid:after {
   clear: both;
 }
-.app-fluid .sidebar {
+.app-fluid .leftbar {
   float: left;
-  width: 220px;
+  width: 30%;
 }
-.app-fluid .content {
-  min-width: 700px;
-  max-width: 1180px;
-  margin-left: 240px;
+.app-fluid .rightbar {
+  float: right;
+  width: 70%;
 }
 
 #sourcecode {
@@ -27,7 +26,7 @@
 }
 
 textarea {
-    width: 97%;
-    height: 98%;
+  width: 97%;
+  height: 98%;
 }
 

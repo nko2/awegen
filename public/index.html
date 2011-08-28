@@ -32,41 +32,25 @@
     <![endif]-->
 </head>
 <body>
-<div class="topbar-wrapper" style="z-index: 5;">
+<div class="topbar-wrapper">
     <div class="topbar">
         <div class="fill">
             <div class="container">
-                <h3><a href="#">Graphik.us</a></h3>
+                <h3><a href="#">graphik.us</a></h3>
                 <ul>
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-                <ul class="nav secondary-nav">
-                    <li> <a>Username</a></li>
-                    <!--<li class="menu">
-                        <a href="#" class="menu">Dropdown</a>
-                        <ul class="menu-dropdown">
-                            <li><a href="#">Secondary link</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Another link</a></li>
-                        </ul>
-                        </li>-->
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
                 </ul>
             </div>
-        </div><!-- /fill -->
-    </div><!-- /topbar -->
-</div><!-- /topbar-wrapper -->
-<div class="container-fluid" style="">
-    <!--Y space of nav-nopbar-->
-    <div class="row" style="margin-top:20px"></div>
-    <div class="row" style="margin-top:20px"></div>
-
-    <!--Code and Image top menus-->
-    <div class="row" style="margin:0 0 5px 6px;">
-        <div class="columns" style="float:left; width:30%;">
         </div>
-        <div class="columns" style="float:right; width:65%;">
+    </div>
+</div>
+<div class="app-fluid" style="">
+    <!--Code and Image top menus-->
+    <div class="row">
+        <div class="leftbar columns">
+        </div>
+        <div class="rightbar columns">
             <div class="row" style="margin:0 0 5px 6px;">
                 <div class="span4 columns" style="margin:0; padding:0;">
                     <select id="imgs" name="imagelist"></select>
@@ -81,15 +65,13 @@
     </div>
 
     <!--Code and Image-->
-    <div class="row" style="margin:0 0 10px 6px; height:490px;">
-        <div class="columns" style="float:left; width:30%; height:100%;
-            border:#E8E8E8 1px solid;">
-            <div id="sourcecode">flip
-gamma 20
-negate
-fuzz 10</div>
+    <div class="row" style="margin:0 0 10px 0; height:490px;">
+        <div class="columns" style="float:left; width:30%; height:100%; border:#E8E8E8 1px solid;">
+            <div id="sourcecode">gamma 3
+rotate 30
+</div>
         </div>
-        <div class="columns" style="float:right; width:65%; height:100%; background-color:#EEEEEE; border:#CBC8C2 solid 1px;">
+        <div class="columns" style="float:right; width:65%; height:100%; background-color:#FFFFFF; border:#CBC8C2 solid 1px;">
               <div id="imagewrapper"></div>
         </div>
     </div>
@@ -99,7 +81,7 @@ fuzz 10</div>
         <div class="columns" style="float:left; width:30%; height:100%;">
             <div class="well" style="padding: 14px 19px;">
                 <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
-                <span style="margin-right:20px">auto <input id="autosubmitcode" type="checkbox"></span>
+                <span style="margin-right:20px">auto (5 sec) <input id="autosubmitcode" type="checkbox"></span>
                 <button class="btn">Save</button>
             </div>
         </div>

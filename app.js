@@ -57,18 +57,18 @@ server.sockets.on('connection', function (socket) {
 
   // Listen for sourcecode events from client
   socket.on('sourcecode', function(data) {
-    console.log('Receiving sourcecode: \n' + data);
+    console.log('Receiving data: \n' + data);
+    var json = JSON.parse(data);
+    var json_message = 'images/' + json.image + ' -' + json.sourcecode.replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -').replace(/-$/, "");
 
-    var json_message = JSON.parse(data).sourcecode;
-    var imageName = json_message.split(' ')[0]
-    var json_message = "images/" + json_message
-    var imageOutput = "images_output/" + new Date().getTime() + imageName
-    var convert_params = json_message + " " + imageOutput
+    var imageName = json.image;
+    var imageOutput = "images_output/" + new Date().getTime() + imageName;
+    var convert_params = json_message + " " + imageOutput;
 
     child = exec("convert " + convert_params, function (error, stdout, stderr) {
       console.log("stdout: " + stdout);
       console.log("stderr: " + stderr);
-      console.log("error: " + error)
+      console.log("error: " + error);
 
       var output_image = null;
       var original_image = null;

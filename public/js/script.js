@@ -39,10 +39,10 @@ $(function(){
     }
 
     submitData = function() {
-        var sourcecode = $('select#imgs').val() + " -";
-        sourcecode += editor.getSession().getValue().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
-        sourcecode = sourcecode.replace(/-$/, "");
-        var json = JSON.stringify({'sourcecode' : sourcecode});
+        var json = JSON.stringify({
+          image: $('select#imgs').val(),
+          sourcecode: editor.getSession().getValue()
+        });
         // Emit an event to server with source code
         socket.emit('sourcecode', json);
     }
@@ -65,9 +65,10 @@ $(function(){
             if ($('#autosubmitcode').is(':checked')) {
                 setInterval(function () {
                     submitData();
-                }, 2000);
+                }, 5000);
             }
         });
+
     });
 
     /* Backbone.js
