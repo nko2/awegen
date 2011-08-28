@@ -28,22 +28,30 @@ $(function(){
         });
     });
 
-    function resize_image(image, w, h) {
+    resize_image = function(image, w, h) {
         w = (h / image.height) * image.width;
         h = (w / image.width) * image.height;
         return {'width':w, 'height':h};
     }
 
+    submitData = function() {
+        var sourcecode = $('select#imgs').val() + " -";
+        //sourcecode += $('#sourcecode').val().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
+        sourcecode += editor.getSession().getValue().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
+        sourcecode = sourcecode.replace(/-$/, "");
+        var json = JSON.stringify({'sourcecode' : sourcecode});
+        // Emit an event to server with source code
+        socket.emit('sourcecode', json);
+    }
+
     $(document).ready(function() {
+        $('select#imgs').change(function(value) {
+            submitData();
+        });
+
         // When submit code button pressed
         $('#submitcode').click(function() {
-            var sourcecode = $('select#imgs').val() + " -";
-            //sourcecode += $('#sourcecode').val().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
-            sourcecode += editor.getSession().getValue().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
-            sourcecode = sourcecode.replace(/-$/, "");
-            var json = JSON.stringify({'sourcecode' : sourcecode});
-            // Emit an event to server with source code
-            socket.emit('sourcecode', json);
+            submitData();
         });
 
         $('#imageinput').change(function() {
@@ -53,14 +61,7 @@ $(function(){
         $('#autosubmitcode').change(function() {
             if ($('#autosubmitcode').is(':checked')) {
                 setInterval(function () {
-                    var sourcecode = $('select#imgs').val() + " -";
-                    //sourcecode += $('#sourcecode').val().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
-                    sourcecode += editor.getSession().getValue().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
-                    sourcecode = sourcecode.replace(/-$/, "");
-                    console.log(sourcecode);
-                    var json = JSON.stringify({'sourcecode' : sourcecode});
-                    // Emit an event to server with source code
-                    socket.emit('sourcecode', json);
+                    submitData();
                 }, 2000);
             }
         });
