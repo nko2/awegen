@@ -81,9 +81,10 @@
     </div>
 
     <!--Code and Image-->
-    <div class="row" style="margin:0 0 5px 6px; height:490px;">
-        <div class="columns" style="float:left; width:30%; height:100%;">
-            <textarea>some code</textarea>
+    <div class="row" style="margin:0 0 10px 6px; height:490px;">
+        <div class="columns" style="float:left; width:30%; height:100%;
+            border:#E8E8E8 1px solid;">
+            <div id="sourcecode">flip</div>
         </div>
         <div class="columns" style="float:right; width:65%; height:100%; background-color:#EEEEEE; border:#CBC8C2 solid 1px;">
               <div id="imagewrapper"></div>
@@ -95,37 +96,11 @@
         <div class="columns" style="float:left; width:30%; height:100%;">
             <div class="well" style="padding: 14px 19px;">
                 <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
-                <span style="margin-right:20px">auto <input type="checkbox"></span>
+                <span style="margin-right:20px">auto <input id="autosubmitcode" type="checkbox"></span>
                 <button class="btn">Save</button>
             </div>
         </div>
     </div>
 </div>
-            <div id="sourcecode">some text</div>
-
-
-  <!--<div id="app" class="app-fluid">
-    <div class="content">
-      <div class="container">
-        <div class="row">
-          <div class="span16">
-            <select id="imgs" name="imagelist"></select>
-            <form id="imageupload" method="post" action="/upload" enctype="multipart/form-data">
-                <input id="imageinput" type="file" name="image" value="Upload Image" class="buttons"/>
-            </form>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span3 columns">
-
-          </div>
-          <div class="span18 columns">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  -->
-
 </body>
 </html>

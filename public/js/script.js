@@ -12,7 +12,6 @@ $(function(){
 
     // When image arrive, display it
     socket.on('image', function(image) {
-        console.log(image);
         var viewWidth = $('#imagewrapper').parent().width();
         var viewHeight = $('#imagewrapper').parent().height();
 
@@ -39,16 +38,32 @@ $(function(){
         // When submit code button pressed
         $('#submitcode').click(function() {
             var sourcecode = $('select#imgs').val() + " -";
-            sourcecode += $('#sourcecode').val().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
+            //sourcecode += $('#sourcecode').val().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
+            sourcecode += editor.getSession().getValue().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
             sourcecode = sourcecode.replace(/-$/, "");
             var json = JSON.stringify({'sourcecode' : sourcecode});
+            alert(json);
             // Emit an event to server with source code
             socket.emit('sourcecode', json);
         });
 
         $('#imageinput').change(function() {
-            alert(true);
             $('#imageupload').submit();
+        });
+
+        $('#autosubmitcode').change(function() {
+            if ($('#autosubmitcode').is(':checked')) {
+                setInterval(function () {
+                    var sourcecode = $('select#imgs').val() + " -";
+                    //sourcecode += $('#sourcecode').val().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
+                    sourcecode += editor.getSession().getValue().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
+                    sourcecode = sourcecode.replace(/-$/, "");
+                    console.log(sourcecode);
+                    var json = JSON.stringify({'sourcecode' : sourcecode});
+                    // Emit an event to server with source code
+                    socket.emit('sourcecode', json);
+                }, 2000);
+            }
         });
     });
 
