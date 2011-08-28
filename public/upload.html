@@ -6,13 +6,10 @@
         <script>
 
             $(document).ready(function() {
-                $('#imageupload').change(function() {
+                $('#imageinput').change(function() {
                     alert(true);
-                    $.post('/upload', function(data) {
-                        alert("Data Loaded: " + data);
-                    });
+                    $('#imageupload').submit();
                 });
-
             });
         </script>
     </head>
@@ -24,15 +21,16 @@
                     <ul>
                         <li class="active"><a href="#image">Image</a></li>
                         <li><a href="#about">About</a></li>
-                        <li> <input id="imageupload" type="file" name="imageupload"/></li>
+                        <li>
+                            <form id="imageupload" method="post" enctype="multipart/form-data">
+                                <input id="imageinput" type="file" name="image"
+                                value="Upload Image" class="buttons"/>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <form method="post" enctype="multipart/form-data">
-            <p>Image: <input type="file" name="image" /></p>
-            <p><input type="submit" value="Upload" /></p>
-        </form>
     </body>
 </html>
 

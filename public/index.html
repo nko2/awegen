@@ -4,66 +4,128 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>graphik.us: image processing power right away</title>
-  <meta name="description" content="">
-  <meta name="author" content="Alan Fachini <alfakini@gmail.com>, Felipe Gallois <felipe@gallois.com.br>, Julio Monteiro <julio@monteiro.eti.br>">
+    <title>graphik.us: image processing power right away</title>
+    <meta name="description" content="">
+    <meta name="author" content="Alan Fachini <alfakini@gmail.com>, Felipe Gallois <felipe@gallois.com.br>, Julio Monteiro <julio@monteiro.eti.br>">
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.1.1.min.css">
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.1.1.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="js/libs/underscore-1.1.7.min.js"></script>
+    <script src="js/libs/json2-2011.02.23.js"></script>
+    <script src="js/libs/backbone-0.5.3.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/libs/ace/ace.js"></script>
+    <script src="js/libs/ace/theme-textmate.js"></script>
+    <script src="js/libs/ace/mode-javascript.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js"></script>
+
+    <!--[if lt IE 7 ]>
+        <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+        <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+    <![endif]-->
 </head>
 <body>
-  <div class="topbar">
-    <div class="fill">
-      <div class="container">
-        <h3><a href="#">graphik.us</a></h3>
-        <ul>
-          <li class="active"><a href="#image">Image</a></li>
-          <li><a href="#about">About</a></li>
-        </ul>
-      </div>
+<div class="topbar-wrapper" style="z-index: 5;">
+    <div class="topbar">
+        <div class="fill">
+            <div class="container">
+                <h3><a href="#">Graphik.us</a></h3>
+                <ul>
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <ul class="nav secondary-nav">
+                    <li> <a>Username</a></li>
+                    <!--<li class="menu">
+                        <a href="#" class="menu">Dropdown</a>
+                        <ul class="menu-dropdown">
+                            <li><a href="#">Secondary link</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Another link</a></li>
+                        </ul>
+                        </li>-->
+                </ul>
+            </div>
+        </div><!-- /fill -->
+    </div><!-- /topbar -->
+</div><!-- /topbar-wrapper -->
+<div class="container-fluid" style="">
+    <!--Y space of nav-nopbar-->
+    <div class="row" style="margin-top:20px"></div>
+    <div class="row" style="margin-top:20px"></div>
+
+    <!--Code and Image top menus-->
+    <div class="row" style="margin:0 0 5px 6px;">
+        <div class="columns" style="float:left; width:30%;">
+        </div>
+        <div class="columns" style="float:right; width:65%;">
+            <div class="row" style="margin:0 0 5px 6px;">
+                <div class="span4 columns" style="margin:0; padding:0;">
+                    <select id="imgs" name="imagelist"></select>
+                </div>
+                <div class="span4 columns" style="margin:0; padding:0;">
+                    <form id="imageupload" method="post" action="/upload" enctype="multipart/form-data" style="margin:0; padding:0;">
+                        <input id="imageinput" type="file" value="Upload Image"/>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div id="app" class="app-fluid">
-    <div class="sidebar">
-      <div id="imagewrapper"></div>
+
+    <!--Code and Image-->
+    <div class="row" style="margin:0 0 5px 6px; height:490px;">
+        <div class="columns" style="float:left; width:30%; height:100%;">
+            <textarea>some code</textarea>
+        </div>
+        <div class="columns" style="float:right; width:65%; height:100%; background-color:#EEEEEE; border:#CBC8C2 solid 1px;">
+              <div id="imagewrapper"></div>
+        </div>
     </div>
+
+    <!--Code and Image bottom menus-->
+    <div class="row" style="margin: 0 0 0 6px;">
+        <div class="columns" style="float:left; width:30%; height:100%;">
+            <div class="well" style="padding: 14px 19px;">
+                <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
+                <span style="margin-right:20px">auto <input type="checkbox"></span>
+                <button class="btn">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="sourcecode">some text</div>
+
+
+  <!--<div id="app" class="app-fluid">
     <div class="content">
       <div class="container">
         <div class="row">
           <div class="span16">
             <select id="imgs" name="imagelist"></select>
+            <form id="imageupload" method="post" action="/upload" enctype="multipart/form-data">
+                <input id="imageinput" type="file" name="image" value="Upload Image" class="buttons"/>
+            </form>
           </div>
         </div>
         <div class="row">
-          <div class="span16 columns">
-            <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
-            <div id="sourcecode">some text</div>
+          <div class="span3 columns">
+
+          </div>
+          <div class="span18 columns">
           </div>
         </div>
       </div>
     </div>
   </div>
+  -->
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
-  <script src="js/libs/underscore-1.1.7.min.js"></script>
-  <script src="js/libs/json2-2011.02.23.js"></script>
-  <script src="js/libs/backbone-0.5.3.min.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="js/libs/ace/ace.js"></script>
-  <script src="js/libs/ace/theme-textmate.js"></script>
-  <script src="js/libs/ace/mode-javascript.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
-
-  <!--[if lt IE 7 ]>
-    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
-    <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
-  <![endif]-->
 </body>
 </html>

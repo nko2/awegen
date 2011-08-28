@@ -80,7 +80,7 @@ server.sockets.on('connection', function (socket) {
       var ctx = canvas.getContext('2d');
       ctx.drawImage(image, 0, 0, image.width, image.height);
 
-      var data = '<img src="' + canvas.toDataURL() + '"/>';
+      var data = {'data':canvas.toDataURL(), 'width':image.width, 'height':image.height};
       socket.emit('image', data);
     });
   });
