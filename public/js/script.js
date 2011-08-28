@@ -28,6 +28,12 @@ $(function(){
         });
     });
 
+    socket.on('error', function() {
+      // later on, we should pass the error message for logging... or not
+      console.log("Error: ")
+      alert("Error converting image");
+    });
+
     resize_image = function(image, w, h) {
         w = (h / image.height) * image.width;
         h = (w / image.width) * image.height;
@@ -36,7 +42,6 @@ $(function(){
 
     submitData = function() {
         var sourcecode = $('select#imgs').val() + " -";
-        //sourcecode += $('#sourcecode').val().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
         sourcecode += editor.getSession().getValue().replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -');
         sourcecode = sourcecode.replace(/-$/, "");
         var json = JSON.stringify({'sourcecode' : sourcecode});
