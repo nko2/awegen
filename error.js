@@ -18,3 +18,4 @@ Error.prototype.send = function(message) {
     this.emit('error', {'message':message});
     return this;
 }
+

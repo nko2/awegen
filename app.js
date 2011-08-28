@@ -10,12 +10,16 @@ var sys = require("sys")
 var app = express.createServer(form({ keepFilename: true, keepExtensions: true, uploadDir: __dirname + '/images' }));
 var server = io.listen(app);
 
+/*
+ * Node.js KnockOut
+ */
 require('nko')('o5nIpNA2L1YuKWrV');
 
-// Serve static files
-app.use("/css", express.static(__dirname + '/public/css'));
-app.use("/js", express.static(__dirname + '/public/js'));
-
+/*
+ * Serve static files
+ */
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/js', express.static(__dirname + '/public/js'));
 app.get('/', function(request, response) {
     response.sendfile(__dirname + '/public/index.html');
 });
@@ -24,6 +28,9 @@ app.get('/about', function(request, response) {
     response.sendfile(__dirname + '/public/about.html');
 });
 
+/*
+ * Receives uploaded images
+ */
 app.post('/upload', function(request, response, next) {
     request.form.complete(function(err, fields, files) {
         if (err) {
@@ -34,15 +41,6 @@ app.post('/upload', function(request, response, next) {
         }
     });
 });
-
-/*
- * Reponse with error for client Ajax Requests
- */
-var errorResponse = function(response, message) {
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.write(JSON.stringify({'error':message}));
-    response.end();
-};
 
 server.sockets.on('connection', function (socket) {
 
@@ -60,19 +58,19 @@ server.sockets.on('connection', function (socket) {
 
   // Listen for sourcecode events from client
   socket.on('sourcecode', function(data) {
-    console.log('Receiving sourcecode: \n' + data);
+    console.log('Receiving data: \n' + data);
+    var json = JSON.parse(data);
+    var json_message = 'images/' + json.image + ' -' + json.sourcecode.replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -').replace(/-$/, "");
 
-    var json_message = JSON.parse(data).sourcecode;
-    var imageName = json_message.split(' ')[0]
-    var json_message = "images/" + json_message
-    var imageOutput = "images_output/" + new Date().getTime() + imageName
-    var convert_params = json_message + " " + imageOutput
+    var imageName = json.image;
+    var imageOutput = "images_output/" + new Date().getTime() + imageName;
+    var convert_params = json_message + " " + imageOutput;
 
     console.log(convert_params);
     child = exec("convert " + convert_params, function (error, stdout, stderr) {
       console.log("stdout: " + stdout);
       console.log("stderr: " + stderr);
-      console.log("error: " + error)
+      console.log("error: " + error);
 
       var output_image = null;
       var original_image = null;
