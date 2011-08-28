@@ -42,6 +42,7 @@
                     <li style="margin-left: 10px; margin-top: -14px">
                         <iframe src="http://nodeknockout.com/iframe/awegen?css=https://raw.github.com/gist/1176404/e336c0efd7c6d78fa1f49fda2f5e813ab747f580/ko-button.css" width="100px" height="25px" style="border: 0; margin-top: 20px"></iframe>
                     </li>
+                    <li><a href="#" id="error"></a></li>
                 </ul>
             </div>
         </div>
@@ -51,12 +52,14 @@
     <div id="initial-message" class="row" style="margin:10px 0 0 0;">
         <div class="alert-message block-message info">
             <a id="close-initial-message" class="close" href="#">&times;</a>
-            <p>Hey you! This is graphik.us, and app build in 48h to, read the
-            about page, out nko2 team page http://nodeknockout.com/teams/awegen.
-            How to use, selecti mage, code, submit
+            <p>Hey you! This is graphik.us, an app build in 48h to make image processing easy on you.<br />
+              Our nko2 team page is <a href="http://nodeknockout.com/teams/awegen">http://nodeknockout.com/teams/awegen</a>.
+              Read the about page to find out a bit more about graphik.us and us :) <br />
+              You can graphik.us by selecting an image, typing a code below and hitting submit.
+              The available commands are the same you have in the convert command from imagemagick.<br />
             </p>
             <div class="alert-actions">
-                <a id="understand-button" class="btn small" href="#">I understand!</a>
+                <a id="understand-button" class="btn small" href="#">Got it!</a>
             </div>
         </div>
     </div>
@@ -81,7 +84,7 @@
     <!--Code and Image-->
     <div class="row" style="margin:0 0 10px 0; height:450px;">
         <div class="columns" style="float:left; width:30%; height:100%; border:#E8E8E8 1px solid;">
-            <div id="sourcecode">gamma 3
+            <div id="sourcecode">auto-gamma
 rotate 30
 </div>
         </div>
@@ -97,11 +100,10 @@ rotate 30
                 <button id="submitcode" class="btn primary" type="submit">Submit code!</button>
                 <span style="margin-right:20px">auto (5 sec) <input id="autosubmitcode" type="checkbox"></span>
                 <!--<button class="btn">Save</button>-->
-                <span> <a href="http://www.imagemagick.org/script/convert.php"> commands? </a></span>
+                <span> <a href="http://www.imagemagick.org/script/convert.php"> magick words? </a></span>
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
-
