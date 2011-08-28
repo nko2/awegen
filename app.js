@@ -76,7 +76,7 @@ server.sockets.on('connection', function (socket) {
 
       if (error !== null) {
         marvin = fs.readFileSync(__dirname + '/images/' + imageName);
-        error.send('error')
+        socket.emit('error')
         console.log("stdout: " + stdout);
       } else {
         marvin = fs.readFileSync(__dirname + '/' + imageOutput);
