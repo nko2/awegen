@@ -18,10 +18,6 @@ app.get('/', function(request, response) {
     response.sendfile(__dirname + '/public/index.html');
 });
 
-app.get('/upload', function(request, response) {
-    response.sendfile(__dirname + '/public/upload.html');
-});
-
 app.post('/upload', function(request, response, next) {
     request.form.complete(function(err, fields, files) {
         if (err) {
