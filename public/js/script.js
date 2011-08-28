@@ -48,9 +48,8 @@ $(function(){
     }
 
     $(document).ready(function() {
-        $('select#imgs').change(function(value) {
-            submitData();
-        });
+
+        submitData();
 
         // When submit code button pressed
         $('#submitcode').click(function() {
