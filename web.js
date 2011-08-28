@@ -5,8 +5,10 @@ var sys = require("sys")
   , Canvas = require('canvas')
   , Image = Canvas.Image
   , exec = require("child_process").exec
-  , form = require('connect-form');
+  , form = require('connect-form')
+  , Error = require('./error');
 
+var error = new Error();
 var app = express.createServer(form({ keepExtensions: true, uploadDir: __dirname + '/images' }));
 var server = io.listen(app);
 
@@ -28,10 +30,20 @@ app.post('/upload', function(request, response, next) {
             next(err);
         } else {
             console.log('\nuploaded %s to %s', files.image.filename, files.image.path);
+            error.emit('Ohw god! The server is unable to save your image, try again!');
             response.redirect('back');
         }
     });
 });
+
+/*
+ * Reponse with error for client Ajax Requests
+ */
+var errorResponse = function(response, message) {
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(JSON.stringify({'error':message}));
+    response.end();
+};
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
