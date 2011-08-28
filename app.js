@@ -7,7 +7,7 @@ var sys = require("sys")
   , exec = require("child_process").exec
   , form = require('connect-form');
 
-var app = express.createServer(form({ keepExtensions: true, uploadDir: __dirname + '/images' }));
+var app = express.createServer(form({ keepFilename: true, keepExtensions: true, uploadDir: __dirname + '/images' }));
 var server = io.listen(app);
 
 require('nko')('o5nIpNA2L1YuKWrV');
@@ -64,6 +64,7 @@ server.sockets.on('connection', function (socket) {
     var imageOutput = "images_output/" + new Date().getTime() + imageName
     var convert_params = json_message + " " + imageOutput
 
+    console.log(convert_params);
     child = exec("convert " + convert_params, function (error, stdout, stderr) {
       console.log("stdout: " + stdout);
       console.log("stderr: " + stderr);
