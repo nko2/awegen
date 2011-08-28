@@ -12,16 +12,23 @@ var error = new Error();
 var app = express.createServer(form({ keepExtensions: true, uploadDir: __dirname + '/images' }));
 var server = io.listen(app);
 
+/*
+ * Node.js KnockOut
+ */
 require('nko')('o5nIpNA2L1YuKWrV');
 
-// Serve static files
-app.use("/css", express.static(__dirname + '/public/css'));
-app.use("/js", express.static(__dirname + '/public/js'));
-
+/*
+ * Serve static files
+ */
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/js', express.static(__dirname + '/public/js'));
 app.get('/', function(request, response) {
     response.sendfile(__dirname + '/public/index.html');
 });
 
+/*
+ * Receives uploaded images
+ */
 app.post('/upload', function(request, response, next) {
     request.form.complete(function(err, fields, files) {
         if (err) {
@@ -33,15 +40,6 @@ app.post('/upload', function(request, response, next) {
         }
     });
 });
-
-/*
- * Reponse with error for client Ajax Requests
- */
-var errorResponse = function(response, message) {
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.write(JSON.stringify({'error':message}));
-    response.end();
-};
 
 server.sockets.on('connection', function (socket) {
 
