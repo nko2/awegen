@@ -73,33 +73,28 @@ server.sockets.on('connection', function (socket) {
       console.log("stderr: " + stderr);
       console.log("error: " + error);
 
-      var output_image = null;
-      var original_image = null;
+      var marvin;
 
-      original_image = fs.readFileSync(imageInput);
       if (error !== null) {
         socket.emit('error');
+        marvin = fs.readFileSync(imageInput);
+        socket.emit('error', "Error converting");
         console.log("stdout: " + stdout);
       } else {
-        output_image = fs.readFileSync(imageOutput);
+        marvin = fs.readFileSync(imageOutput);
       }
 
       var image = new Image;
-      if (output_image !== null) {
-        image.src = output_image;
-      } else {
-        image.src = original_image;
-      }
+      image.src = marvin;
       var canvas = new Canvas(image.width, image.height);
       var ctx = canvas.getContext('2d');
       try {
+        if (error === null) {
+          socket.emit('error', '');
+        }
         ctx.drawImage(image, 0, 0, image.width, image.height);
       } catch (err) {
-        image.src = original_image;
-        canvas = new Canvas(image.width, image.height);
-        ctx = canvas.getContext('2d');
-        ctx.drawImage(image, 0, 0, image.width, image.height);
-        socket.emit('error');
+        socket.emit('error', "Error Drawing");
       }
 
       var data = {'data':canvas.toDataURL(), 'width':image.width, 'height':image.height};

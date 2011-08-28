@@ -26,10 +26,15 @@ $(function(){
         });
     });
 
-    socket.on('error', function() {
+    socket.on('error', function(message) {
       // later on, we should pass the error message for logging... or not
-      console.log("Error: ")
-      alert("Error converting image");
+      if (message === '') {
+         console.log("Error event called with no message");
+         $('a#error').text("");
+       } else {
+         console.log("Error: " + message);
+         $('a#error').text("Error processing image");
+       }
     });
 
     resize_image = function(image, w, h) {
