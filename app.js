@@ -5,11 +5,9 @@ var sys = require("sys")
   , Canvas = require('canvas')
   , Image = Canvas.Image
   , exec = require("child_process").exec
-  , form = require('connect-form')
-  , Error = require('./error');
+  , form = require('connect-form');
 
-var error = new Error();
-var app = express.createServer(form({ keepExtensions: true, uploadDir: __dirname + '/images' }));
+var app = express.createServer(form({ keepFilename: true, keepExtensions: true, uploadDir: __dirname + '/images' }));
 var server = io.listen(app);
 
 /*
@@ -32,10 +30,9 @@ app.get('/', function(request, response) {
 app.post('/upload', function(request, response, next) {
     request.form.complete(function(err, fields, files) {
         if (err) {
-            next(err);
+            console.log('Error: Unable to save image');
         } else {
             console.log('\nuploaded %s to %s', files.image.filename, files.image.path);
-            error.send('Ohw god! The server is unable to save your image, try again!');
             response.redirect('back');
         }
     });
@@ -65,6 +62,7 @@ server.sockets.on('connection', function (socket) {
     var imageOutput = "images_output/" + new Date().getTime() + imageName;
     var convert_params = json_message + " " + imageOutput;
 
+    console.log(convert_params);
     child = exec("convert " + convert_params, function (error, stdout, stderr) {
       console.log("stdout: " + stdout);
       console.log("stderr: " + stderr);
