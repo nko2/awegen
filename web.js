@@ -28,7 +28,7 @@ app.post('/upload', function(request, response, next) {
             next(err);
         } else {
             console.log('\nuploaded %s to %s', files.image.filename, files.image.path);
-            error.emit('Ohw god! The server is unable to save your image, try again!');
+            error.send('Ohw god! The server is unable to save your image, try again!');
             response.redirect('back');
         }
     });
@@ -81,7 +81,7 @@ server.sockets.on('connection', function (socket) {
 
       if (error !== null) {
         marvin = fs.readFileSync(__dirname + '/images/' + imageName);
-        socket.emit('error')
+        error.send('error')
         console.log("stdout: " + stdout);
       } else {
         marvin = fs.readFileSync(__dirname + '/' + imageOutput);
