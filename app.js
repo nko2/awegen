@@ -56,11 +56,11 @@ server.sockets.on('connection', function (socket) {
   socket.on('sourcecode', function(data) {
     console.log('Receiving data: \n' + data);
     var json = JSON.parse(data);
-    var json_message = __dirname + '/images/' + json.image + ' -' + json.sourcecode.replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -').replace(/-$/, "");
 
     var imageName = json.image;
+    var imageOriginal = __dirname + '/images/' + json.image;
     var imageOutput = __dirname + "/images_output/" + new Date().getTime() + imageName;
-    var convert_params = json_message + " " + imageOutput;
+    var convert_params = imageInput + ' -' + json.sourcecode.replace(/[\s\r\n]+$/, '').replace(/\n/g, ' -').replace(/-$/, "") + " " + imageOutput;
 
   	console.log("Convert_params:: " + convert_params);
     console.log("Command: " + convert_params);
@@ -72,12 +72,12 @@ server.sockets.on('connection', function (socket) {
       var output_image = null;
       var original_image = null;
 
-      original_image = fs.readFileSync(__dirname + '/images/' + imageName);
+      original_image = fs.readFileSync(imageInput);
       if (error !== null) {
         socket.emit('error');
         console.log("stdout: " + stdout);
       } else {
-        output_image = fs.readFileSync(__dirname + '/' + imageOutput);
+        output_image = fs.readFileSync(imageOutput);
       }
 
       var image = new Image;
