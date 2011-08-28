@@ -63,12 +63,16 @@ server.sockets.on('connection', function (socket) {
     child = exec("convert " + convert_params, function (error, stdout, stderr) {
       console.log("stdout: " + stdout);
       console.log("stderr: " + stderr);
+      console.log("error: " + error)
 
-      var marvin = fs.readFileSync(__dirname + '/' + imageOutput);
+      var marvin;
 
       if (error !== null) {
         marvin = fs.readFileSync(__dirname + '/images/' + imageName);
+        socket.emit('error')
         console.log("stdout: " + stdout);
+      } else {
+        marvin = fs.readFileSync(__dirname + '/' + imageOutput);
       }
 
       var image = new Image;
