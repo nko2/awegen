@@ -31,11 +31,6 @@ app.post('/upload', function(request, response, next) {
     });
 });
 
-var port = process.env.PORT || 3000;
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
-
 server.sockets.on('connection', function (socket) {
 
   // Send image list to client
@@ -83,4 +78,14 @@ server.sockets.on('connection', function (socket) {
   });
 });
 
+app.listen(process.env.NODE_ENV === 'production' ? 80 : 8000, function() {
+  console.log('Ready');
+
+  // if run as root, downgrade to the owner of this file
+  if (process.getuid() === 0)
+    require('fs').stat(__filename, function(err, stats) {
+      if (err) return console.log(err)
+      process.setuid(stats.uid);
+    });
+});
 
